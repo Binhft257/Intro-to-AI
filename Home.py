@@ -43,9 +43,9 @@ with st.container():
     st.title("Emotion Based Music Recommendation System")
     for i in range(2):
         st.markdown('#')
-    st.caption('This projects uses Spotify and Genius to recommend music along with Spotify widget.')
-    st.caption('It contains emotion based models trained on texts, videos and audios to provided recommendation via those media.')
-    st.caption('Tip: To use the chatbot interface in the text based recommendation section, an API Key is required.')
+    st.caption('This project recommends Vietnamese songs based on the emotion expressed in the text entered by the user in Vietnamese.')
+    st.caption('The model is trained using Naive Bayes with a simple Vietnamese emotion dataset containing four labels: joy, sadness, anger, fear, and love.')
+    st.caption('It helps users quickly and easily discover Vietnamese music that matches their mood.')
 
     for i in range(2):
         st.markdown('#')
