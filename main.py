@@ -18,9 +18,10 @@ with st.container():
     st.title("Emotion Based Music Recommendation System")
     for i in range(2):
         st.markdown('#')
-    st.caption('This project recommends Vietnamese songs based on the emotion expressed in the text entered by the user in Vietnamese.')
-    st.caption('The model is trained using Naive Bayes with a simple Vietnamese emotion dataset containing four labels: joy, sadness, anger, fear, and love.')
-    st.caption('It helps users quickly and easily discover Vietnamese music that matches their mood.')
+    st.caption("This project recommends Vietnamese songs based on the user's emotion, detected either from text input or facial expressions.")
+    st.caption("It integrates two emotion recognition models: a Naive Bayes classifier for Vietnamese text and a CNN model trained on FER-2013 for facial emotion detection.")
+    st.caption("The system helps users easily discover Vietnamese music that aligns with their current mood.")
+
 
     for i in range(2):
         st.markdown('#')

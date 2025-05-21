@@ -1,4 +1,5 @@
 Emotion-Based Music Recommendation System
+
 This project is a web application that recommends Vietnamese songs based on the user's emotional state, detected through either text input or facial expression analysis via webcam or uploaded images. It leverages machine learning models, including Naive Bayes for text-based emotion detection and a convolutional neural network (CNN) for facial emotion recognition, to suggest songs from a Spotify dataset tailored to the detected emotions.
 Features
 
@@ -10,7 +11,7 @@ Responsive Design: Incorporates Bootstrap for styling and supports embedded Spot
 
 Project Structure
 
-Home.py: The main Streamlit app file, defining the homepage with project details and links to external resources (GitHub, Colab, etc.).
+main.py: The main Streamlit app file, defining the homepage with project details and links to external resources (GitHub, Colab, etc.).
 crawlData.py: Script to crawl Spotify playlists using the Spotify API and save song data (track ID, name, URI, genre) to a CSV file.
 4_Recommend.py: The recommendation module, handling emotion detection (text and image-based) and song suggestions.
 data/: Directory containing:
@@ -43,7 +44,7 @@ Set Up Spotify API Credentials:
 
 Create a Spotify Developer account and set up an app at Spotify Developer Dashboard.
 Obtain your client_id and client_secret.
-Update crawlData.py with your credentials:client_id = 'your_client_id'
+Update crawlData.py with your credentials:client_id = 'your_client_id',
 client_secret = 'your_client_secret'
 
 
@@ -66,7 +67,7 @@ Ensure data/video_based/finall_emotion_model.h5 and data/video_based/haarcascade
 Usage
 
 Run the Streamlit App:
-streamlit run Home.py
+streamlit run main.py
 
 This starts the app at http://localhost:8501.
 
@@ -117,17 +118,4 @@ Improve facial emotion recognition with a custom-trained model for Vietnamese us
 Expand the song dataset to include more genres and artists.
 Add support for real-time emotion detection via continuous webcam streaming.
 
-Resources
-
-GitHub Repository
-Google Colab Notebook
-Spotify Developer API
-Streamlit Documentation
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-Acknowledgments
-
-Built with Streamlit, Spotipy, and TensorFlow.
-Thanks to Spotify for the API and OpenCV for face detection tools.
 
