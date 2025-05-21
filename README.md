@@ -1,89 +1,133 @@
+Emotion-Based Music Recommendation System
+This project is a web application that recommends Vietnamese songs based on the user's emotional state, detected through either text input or facial expression analysis via webcam or uploaded images. It leverages machine learning models, including Naive Bayes for text-based emotion detection and a convolutional neural network (CNN) for facial emotion recognition, to suggest songs from a Spotify dataset tailored to the detected emotions.
+Features
 
-# &#127925; Emotion-Based-Music-Recommendation-System
----
+Text-Based Emotion Detection: Users can input a Vietnamese sentence, and the system uses a Naive Bayes classifier to detect emotions (joy, sadness, anger, fear, love) and recommend songs.
+Facial Emotion Recognition: Users can capture an image via webcam or upload a photo, and a pre-trained CNN model detects emotions (angry, disgust, fear, happy, neutral, sad, surprise) to suggest songs.
+Spotify Integration: Songs are sourced from Spotify playlists, crawled using the Spotify API, and matched to emotions via predefined genre mappings.
+Interactive UI: Built with Streamlit, the app offers a user-friendly interface with tabs for text and image-based recommendations.
+Responsive Design: Incorporates Bootstrap for styling and supports embedded Spotify players for song previews.
 
-![Preview](./preview/search.png)
+Project Structure
 
-This projects uses Spotify and Genius to recommend music along with Spotify widget. It contains emotion based models trained on texts, videos and audios to provided recommendation via those media.
+Home.py: The main Streamlit app file, defining the homepage with project details and links to external resources (GitHub, Colab, etc.).
+crawlData.py: Script to crawl Spotify playlists using the Spotify API and save song data (track ID, name, URI, genre) to a CSV file.
+4_Recommend.py: The recommendation module, handling emotion detection (text and image-based) and song suggestions.
+data/: Directory containing:
+file_chuan_4cot.csv: Dataset of songs with track ID, name, URI, and genres.
+emotion_dataset.txt: Training data for the text-based emotion classifier.
+video_based/finall_emotion_model.h5: Pre-trained CNN model for facial emotion recognition.
+video_based/haarcascade_frontalface_default.xml: Haar Cascade for face detection.
 
-> Also checkout the [Streamlit App](https://samya-ravenxi-emotion-based-music-recommendation-sy-home-bx6kzw.streamlit.app/)
 
-<br>
-<br>
+icons/: Directory with images for the UI (cover, Streamlit, Spotify, Colab logos).
 
-> **Warning:**
-> Modify the secrets.toml file to store the [API Key](https://huggingface.co/facebook/blenderbot-400M-distill?text=Hi.)
+Prerequisites
 
-<br>
-<br>
+Python 3.8+
+Spotify Developer Account (for API credentials)
+Webcam (for facial emotion detection)
 
-This streamlit app contains the following sections:
-* &#128393; Explore: This sections lets the user explore all the dataframes required for the webapp.
+Installation
 
-<br>
+Clone the Repository:
+git clone https://github.com/Binhft257/Intro-to-AI
+cd Emotion-Based-Music-Recommendation-System
 
-![Explore](./preview/explore.png)
 
-<br>
-<br>
-<br>
+Install Dependencies:Install the required Python packages using:
+pip install -r requirements.txt
 
-* &#128200; Visualize: This section lets the user visualize the various trends in the dataset, like popularity of the movies, seggregation of the movies into genres/keywords, the vote distribution statistics and the coappearance network of all cast members based on user input.
 
-<br>
+Set Up Spotify API Credentials:
 
-![Visualise](./preview/visualise.png)
+Create a Spotify Developer account and set up an app at Spotify Developer Dashboard.
+Obtain your client_id and client_secret.
+Update crawlData.py with your credentials:client_id = 'your_client_id'
+client_secret = 'your_client_secret'
 
-<br>
-<br>
-<br>
 
-* &#128270; Search: This section lets the user search for recommendations on popular track, albums, artists or parametric features of the search criteria.
 
-<br>
 
-![Search](./preview/parametric_search.png)
+Prepare the Dataset:
 
-<br>
-<br>
-<br>
+Run crawlData.py to fetch Spotify playlist data:python crawlData.py
 
-* &#127909; Recommendation: This section lets the user ask for Text Based, Video Based or Audio Based recommendations, after greeting the user with popular movies specific to a given genre as well as over the entire dataset.
+This generates multiple CSV files, each corresponding to a different music genre (e.g., pop.csv, rap.csv, rock.csv, etc.). Merge or process it into data/file_chuan_4cot.csv with columns: track_id, name, uri, genres.
+Ensure data/emotion_dataset.txt contains training data in the format: text|emotion.
 
-<br>
 
-![Recommend](./preview/text_based.png)
+Download Pre-trained Model:
 
-<br>
-<br>
+Ensure data/video_based/finall_emotion_model.h5 and data/video_based/haarcascade_frontalface_default.xml are in place. 
 
-> For detailed guides, steps and instructions, check out: [Colab Notebook](https://colab.research.google.com/drive/1ahxyp8i9Ngy2nyA5THSOwDzVS99prLMF?usp=sharing)
 
-<br>
-<br>
 
-<div>
-    <br>
-    <br>
-    <br>
-    <div align="center">
-    ~ made with ~
-    </div>
-    <br>
-    <br>
-    <div align=center>
-        <p><a href='https://docs.streamlit.io/library/get-started'>
-            <img src='./icons/streamlit.png' class='img-fluid' width=30%/>
-        </a></p>
-        <br>
-        <br>
-        <p><a href='https://developer.spotify.com/'>
-            <img src='./icons/spotify.png' class='img-fluid' width=12%/>
-        </a></p>
-        <br>
-        <br>
-        <p><a href='https://colab.research.google.com/drive/1ahxyp8i9Ngy2nyA5THSOwDzVS99prLMF?usp=sharing'>
-            <img src='./icons/colab.png' class='img-fluid' width=15%/>
-        </a></p>
-    </div>
-</div>
+Usage
+
+Run the Streamlit App:
+streamlit run Home.py
+
+This starts the app at http://localhost:8501.
+
+Text-Based Recommendations:
+
+Navigate to the "Text-Based" tab.
+Enter a Vietnamese sentence expressing an emotion (e.g., "Tôi rất vui hôm nay").
+The app detects the emotion and suggests up to three Spotify songs matching the emotion's genre.
+
+
+Webcam or Image-Based Recommendations:
+
+Navigate to the "Webcam Capture-Based" tab.
+Choose "Webcam Capture" to use your webcam or "Upload from File" to upload an image.
+For webcam: Click "Capture Photo" to analyze your facial expression.
+For upload: Select a JPG/PNG image with a visible face.
+The app detects the emotion and suggests songs based on the mapped genre.
+
+
+
+Emotion-to-Genre Mapping
+The system maps detected emotions to Vietnamese music genres:
+
+Love: Love songs
+Joy: Vinahouse, Rap, EDM
+Sadness: Lo-fi, Bolero, Ballad
+Anger: Rock
+Fear: Indie
+
+For facial recognition, emotions are mapped as follows:
+
+Angry, Disgust → Anger
+Fear → Fear
+Happy, Surprise → Joy
+Sad, Neutral → Sadness
+
+Limitations
+
+The text classifier is trained on a simple dataset and may struggle with complex or ambiguous Vietnamese text.
+Facial emotion detection requires clear, well-lit images and may not work well with multiple faces or poor lighting.
+Song recommendations are limited to the genres and tracks in file_chuan_4cot.csv.
+The Spotify API requires an active internet connection and valid credentials.
+
+Future Improvements
+
+Enhance the text classifier with a larger, more diverse dataset and advanced NLP models.
+Improve facial emotion recognition with a custom-trained model for Vietnamese users.
+Expand the song dataset to include more genres and artists.
+Add support for real-time emotion detection via continuous webcam streaming.
+
+Resources
+
+GitHub Repository
+Google Colab Notebook
+Spotify Developer API
+Streamlit Documentation
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+Acknowledgments
+
+Built with Streamlit, Spotipy, and TensorFlow.
+Thanks to Spotify for the API and OpenCV for face detection tools.
+

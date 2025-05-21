@@ -14,31 +14,6 @@ def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
-
-st.sidebar.markdown(
-    '''
-        <div style="border: thin solid black; border-radius: 5px;">
-            <div style="background-image: url(data:image/png;base64,{}); background-repeat: no-repeat; height: 125px;">
-                <a href='https://github.com/samya-ravenXI' style="position: absolute; z-index: 2; top: 40px; left: 20px;">
-                    <img src="https://skillicons.dev/icons?i=github" alt="GitHub"/>
-                </a>
-                <h2 style="color: rgb(224, 224, 224); position: absolute; z-index: 2; top: 15px; left: 80px; font-family: sans-serif;">Emotion Based Music Recommendation System</h1>
-            </div>
-            <div style="margin-top: 40px">
-                <a href="https://github.com/samya-ravenXI/Emotion-Based-Music-Recommendation-System" style="position: absolute; z-index: 2; top: 131px; left: 15px">
-                    <img src="https://img.shields.io/badge/github-repo-white" alt="repo"/>
-                </a>
-                <a href="https://colab.research.google.com/drive/1ahxyp8i9Ngy2nyA5THSOwDzVS99prLMF?usp=sharing" style="position: absolute; z-index: 2; top: 131px; right: 92px">
-                    <img src="https://img.shields.io/badge/colab-notebook-orange" alt="repo"/>
-                </a>
-                <a href="https://huggingface.co/facebook/blenderbot-400M-distill?text=Hi." style="position: absolute; z-index: 2; top: 131px; right: 15px">
-                    <img src="https://img.shields.io/badge/API-Key-green" alt="repo"/>
-                </a>
-            </div>
-        </div>
-    '''.format(img_to_bytes('./icons/cover.jpg')),
-    unsafe_allow_html=True)
-
 with st.container():
     st.title("Emotion Based Music Recommendation System")
     for i in range(2):

@@ -18,16 +18,13 @@ st.sidebar.header("🎧 Vietnamese Song Suggestions")
 st.header('🎵 Vietnamese Song Recommendations Based on Emotion')
 
 # Load tracks data
-# Xác định thư mục project root (nơi chứa folder data/)
-BASE_DIR = pathlib.Path(__file__).resolve().parent.parent  # từ pages/ lên project root
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent 
 DATA_FILE = BASE_DIR / "data" / "file_chuan_4cot.csv"
 
 @st.cache_data
 def load_tracks():
-    # Đọc file bằng đường dẫn tuyệt đối
     df = pd.read_csv(DATA_FILE, lineterminator="\n")
 
-    # Strip tên cột để chắc không có khoảng trắng
     df.columns = df.columns.str.strip()
 
     # Parse genres
@@ -92,7 +89,7 @@ mapped_labels = label_index_to_name
 # Tabs
 tab1, tab2 = st.tabs(["📝 Text-Based", "📸 Webcam Capture-Based"])
 
-# Tab 1 - Text Based
+# Tab 1 - Text 
 with tab1:
     st.subheader("📝 Detect Emotion from Text")
     user_input = st.text_input("✍️ Enter a sentence expressing your emotion:")
